@@ -31,7 +31,7 @@ function PopGame() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		let intervalTime = 3001;
+		let intervalTime = 2200;
 		setInterval(() => {
 			ctr++;
 			randItems[ctr] = <RandObject />;
