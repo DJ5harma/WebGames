@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const GameSnippet = ({
@@ -31,6 +32,9 @@ const GameSnippet = ({
 };
 
 export default function Home() {
+	useEffect(() => {
+		document.title = "WebGames TS";
+	}, []);
 	return (
 		<div
 			style={{

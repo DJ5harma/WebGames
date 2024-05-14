@@ -12,6 +12,9 @@ function PopGame() {
 	const [timeRemaining, setTimeRemaining] = useState(60);
 
 	useEffect(() => {
+		document.title = "Pebble Popper";
+	}, []);
+	useEffect(() => {
 		setInterval(() => {
 			setTimeRemaining(timeRemaining - 1);
 		}, 1000);
