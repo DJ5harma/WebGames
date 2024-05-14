@@ -28,10 +28,6 @@ export default function PopGameScoreBoard() {
 			<Link to="/pop-game">
 				<button>Play Again!</button>
 			</Link>
-			<h3>Or</h3>
-			<Link to="/">
-				<button>Go Home!</button>
-			</Link>
 		</div>
 	);
 }
