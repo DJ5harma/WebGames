@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import "./PopGame.css";
 
@@ -7,18 +6,13 @@ import bloopAudio from "./bloop.mp3";
 import happyPopAudio from "./happy-pop.mp3";
 
 import RandObject from "./RandObject";
+import Nav from "./Nav";
 
 function PopGame() {
-	const [timeRemaining, setTimeRemaining] = useState(60);
-
 	useEffect(() => {
 		document.title = "Pebble Popper";
 	}, []);
-	useEffect(() => {
-		setInterval(() => {
-			setTimeRemaining(timeRemaining - 1);
-		}, 1000);
-	}, [timeRemaining]);
+
 	const [popCount, setPopCount] = useState(0);
 	const [clickCount, setClickCount] = useState(0);
 	let ctr = 1;
@@ -27,8 +21,6 @@ function PopGame() {
 	}>({
 		1: <RandObject />,
 	});
-
-	const navigate = useNavigate();
 
 	useEffect(() => {
 		let intervalTime = 2200;
@@ -43,21 +35,6 @@ function PopGame() {
 	const clickAudio = new Audio(bloopAudio);
 	const popAudio = new Audio(happyPopAudio);
 
-	if (timeRemaining <= 0) {
-		navigate("/pop-game-scoreboard", {
-			state: {
-				data: {
-					clickCount,
-					popCount,
-					misses: clickCount - popCount,
-					accuracy: `${((popCount / clickCount) * 100).toFixed(
-						2
-					)} % `,
-				},
-			},
-		});
-	}
-
 	return (
 		<div
 			style={{
@@ -70,23 +47,7 @@ function PopGame() {
 				setClickCount(clickCount + 1);
 			}}
 		>
-			<nav
-				style={{
-					display: "flex",
-					justifyContent: "space-around",
-					position: "fixed",
-					top: 15,
-					width: "100vw",
-				}}
-			>
-				<p>Pops: {popCount}</p>
-				<p>Clicks: {clickCount}</p>
-				<p>Misses: {clickCount - popCount}</p>
-				<p>Acc: {((popCount / clickCount) * 100).toFixed(2)} % </p>
-				<p style={{ color: "rgb(255, 50, 50)" }}>
-					Time: {timeRemaining}
-				</p>
-			</nav>
+			<Nav clickCount={clickCount} popCount={popCount} />
 			<div>
 				{Object.entries(randItems).map(([key, value]) => {
 					return (
