@@ -47,7 +47,7 @@ export default function Home() {
 				gap: 20,
 			}}
 		>
-			<h2>Games... by Dhananjay</h2>
+			<h3>Games... by Dhananjay (More to be added)</h3>
 			<GameSnippet
 				linkPath="/pop-game"
 				name="Pebble Popping Game"
