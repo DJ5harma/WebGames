@@ -1,5 +1,5 @@
 import { Dispatch, forwardRef, SetStateAction, useEffect } from "react";
-import { bloopAudio } from "../../assets/audios";
+import bloopAudio from "../../assets/bloop.mp3";
 const ship = forwardRef<
 	HTMLDivElement,
 	{
@@ -20,13 +20,15 @@ const ship = forwardRef<
 		},
 		ref
 	) => {
+		const clickAudio = new Audio(bloopAudio);
+
 		useEffect(() => {
 			if (shipTopPosition < 10) {
 				setShipDirection("down");
-				bloopAudio.play();
+				clickAudio.play();
 			} else if (shipTopPosition > window.innerHeight - 35) {
 				setShipDirection("up");
-				bloopAudio.play();
+				clickAudio.play();
 			}
 			const shipInterval = setInterval(() => {
 				setShipTopPosition(

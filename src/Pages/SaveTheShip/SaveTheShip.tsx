@@ -3,7 +3,9 @@ import "./SaveTheShip.css";
 import Ship from "./Ship";
 import { isMobile } from "react-device-detect";
 import { useNavigate } from "react-router-dom";
-import { bloopAudio, popAudio } from "../../assets/audios";
+
+import popAudio from "../../assets/happy-pop.mp3";
+import bloopAudio from "../../assets/bloop.mp3";
 
 export default function SaveTheShip() {
 	const [poleHeights, setPoleHeights] = useState([
@@ -20,6 +22,9 @@ export default function SaveTheShip() {
 
 	const navigate = useNavigate();
 
+	const touchedAudio = new Audio(popAudio);
+	const touchedSurfaceAudio = new Audio(bloopAudio);
+
 	function checkCollision() {
 		if (!shipRef.current) return;
 		const shipRect = shipRef.current.getBoundingClientRect();
@@ -34,7 +39,7 @@ export default function SaveTheShip() {
 					shipRect.top < poleRect.top + poleRect.height &&
 					shipRect.top + shipRect.height > poleRect.top
 				) {
-					popAudio.play();
+					touchedAudio.play();
 					navigate("/save-the-ship-scoreboard", {
 						state: {
 							data: {
@@ -86,7 +91,7 @@ export default function SaveTheShip() {
 				overflow: "hidden",
 			}}
 			onClick={() => {
-				bloopAudio.play();
+				touchedSurfaceAudio.play();
 				setShipDirection((prev) => (prev === "up" ? "down" : "up"));
 			}}
 		>

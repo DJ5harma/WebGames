@@ -57,9 +57,9 @@ export default function Home() {
 				description="Accurately click and pop pebbles asap!"
 			/>
 			<GameSnippet
-				linkPath="/flippy-bird"
-				name="Flippy Birdie"
-				description="Take the bird thru spacings b/w poles!"
+				linkPath="/save-the-ship"
+				name="Save the Ship"
+				description="Take the ship thru spacings b/w poles!"
 			/>
 		</div>
 	);

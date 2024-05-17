@@ -2,9 +2,11 @@ import { ReactNode, useEffect, useState } from "react";
 
 import "./PopGame.css";
 
+import bloopAudio from "../../assets/bloop.mp3";
+import happyPopAudio from "../../assets/happy-pop.mp3";
+
 import RandObject from "./RandObject";
 import Nav from "./Nav";
-import { bloopAudio, popAudio } from "../../assets/audios";
 
 function PopGame() {
 	useEffect(() => {
@@ -30,6 +32,9 @@ function PopGame() {
 		}, intervalTime);
 	}, []);
 
+	const clickAudio = new Audio(bloopAudio);
+	const popAudio = new Audio(happyPopAudio);
+
 	return (
 		<div
 			style={{
@@ -37,7 +42,7 @@ function PopGame() {
 				height: "100vh",
 			}}
 			onClick={() => {
-				bloopAudio.play();
+				clickAudio.play();
 				setClickCount(clickCount + 1);
 			}}
 		>
