@@ -3,6 +3,8 @@ import PopGame from "./Pages/PopGame/PopGame";
 import PopGameScoreBoard from "./Pages/PopGame/PopGameScoreBoard";
 import Home from "./Pages/Home/Home";
 import { useState } from "react";
+import SaveTheShipScoreBoard from "./Pages/SaveTheShip/SaveTheShipScoreBoard";
+import SaveTheShip from "./Pages/SaveTheShip/SaveTheShip";
 
 function App() {
 	const [verifyGoingToHome, setVerifyGoingToHome] = useState(false);
@@ -16,6 +18,11 @@ function App() {
 				<Route
 					path="/pop-game-scoreboard"
 					element={<PopGameScoreBoard />}
+				/>
+				<Route path="/save-the-ship" element={<SaveTheShip />} />
+				<Route
+					path="/save-the-ship-scoreboard"
+					element={<SaveTheShipScoreBoard />}
 				/>
 			</Routes>
 

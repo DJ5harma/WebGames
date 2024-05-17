@@ -1,0 +1,31 @@
+@keyframes rightToLeft {
+	0% {
+		right: 0;
+	}
+}
+
+.TwoPolesAndSpacing {
+	display: flex;
+	flex-direction: column;
+	right: 200vw;
+
+	position: absolute;
+
+	animation: rightToLeft 15s forwards;
+}
+
+@keyframes jump {
+	100% {
+		top: 10vh;
+	}
+}
+
+#Ship {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	top: calc(50vh - 30px);
+	left: 20vw;
+
+	transform: rotateX(90);
+}

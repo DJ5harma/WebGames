@@ -18,6 +18,9 @@ const GameSnippet = ({
 				borderRadius: 20,
 				alignItems: "center",
 				gap: 10,
+				width: 350,
+				display: "flex",
+				flexDirection: "column",
 			}}
 		>
 			<div>
@@ -52,6 +55,11 @@ export default function Home() {
 				linkPath="/pop-game"
 				name="Pebble Popping Game"
 				description="Accurately click and pop pebbles asap!"
+			/>
+			<GameSnippet
+				linkPath="/flippy-bird"
+				name="Flippy Birdie"
+				description="Take the bird thru spacings b/w poles!"
 			/>
 		</div>
 	);

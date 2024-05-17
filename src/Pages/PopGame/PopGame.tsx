@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 import "./PopGame.css";
 
-import bloopAudio from "./bloop.mp3";
-import happyPopAudio from "./happy-pop.mp3";
-
 import RandObject from "./RandObject";
 import Nav from "./Nav";
+import { bloopAudio, popAudio } from "../../assets/audios";
 
 function PopGame() {
 	useEffect(() => {
@@ -17,7 +15,7 @@ function PopGame() {
 	const [clickCount, setClickCount] = useState(0);
 	let ctr = 1;
 	const [randItems, setRandItems] = useState<{
-		[key: number]: React.JSX.Element;
+		[key: number]: ReactNode;
 	}>({
 		1: <RandObject />,
 	});
@@ -32,18 +30,14 @@ function PopGame() {
 		}, intervalTime);
 	}, []);
 
-	const clickAudio = new Audio(bloopAudio);
-	const popAudio = new Audio(happyPopAudio);
-
 	return (
 		<div
 			style={{
 				width: "100vw",
 				height: "100vh",
-				backgroundColor: "black",
 			}}
 			onClick={() => {
-				clickAudio.play();
+				bloopAudio.play();
 				setClickCount(clickCount + 1);
 			}}
 		>
