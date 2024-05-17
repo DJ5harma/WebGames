@@ -27,9 +27,9 @@ const ship = forwardRef<
 			}
 			const shipInterval = setInterval(() => {
 				setShipTopPosition(
-					(prev) => prev + (shipDirection === "up" ? -15 : 15)
+					(prev) => prev + (shipDirection === "up" ? -10 : 10)
 				);
-			}, 30);
+			}, 25);
 
 			checkCollision();
 
