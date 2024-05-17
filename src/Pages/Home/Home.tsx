@@ -59,7 +59,7 @@ export default function Home() {
 			<GameSnippet
 				linkPath="/save-the-ship"
 				name="Save the Ship"
-				description="Take the ship thru spacings b/w poles!"
+				description="Change your ship's direction onTap to avoid obstacles!"
 			/>
 		</div>
 	);
