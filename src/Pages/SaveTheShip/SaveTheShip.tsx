@@ -6,7 +6,13 @@ import { useNavigate } from "react-router-dom";
 
 export default function SaveTheShip() {
 	const [poleHeights, setPoleHeights] = useState([
-		{ topPoleHeight: 40, index: 0 },
+		{
+			topPoleHeight: 40,
+			index: 0,
+			color: `rgb(${Math.random() * 200 + 55},${
+				Math.random() * 200 + 55
+			},${Math.random() * 200 + 55})`,
+		},
 	]);
 
 	const [shipTopPosition, setShipTopPosition] = useState(1);
@@ -55,6 +61,9 @@ export default function SaveTheShip() {
 				{
 					topPoleHeight: Math.random() * 60,
 					index: prev[prev.length - 1].index + 1,
+					color: `rgb(${Math.random() * 200 + 55},${
+						Math.random() * 200 + 55
+					},${Math.random() * 200 + 55})`,
 				},
 			]);
 
@@ -87,9 +96,10 @@ export default function SaveTheShip() {
 				setShipDirection((prev) => (prev === "up" ? "down" : "up"));
 			}}
 		>
-			{poleHeights.map(({ topPoleHeight, index }) => {
+			{poleHeights.map(({ topPoleHeight, index, color }) => {
 				// Clearing the poleRefs array before adding new references
 				poleRefs.current = [];
+
 				return (
 					<div
 						key={index}
@@ -100,8 +110,9 @@ export default function SaveTheShip() {
 					>
 						<div
 							style={{
-								backgroundColor: "white",
+								backgroundColor: color,
 								height: `${topPoleHeight}vh`,
+								borderRadius: 40,
 							}}
 							ref={(ref) => poleRefs.current.push(ref)}
 						></div>
@@ -118,7 +129,8 @@ export default function SaveTheShip() {
 						</p>
 						<div
 							style={{
-								backgroundColor: "white",
+								backgroundColor: color,
+								borderRadius: 40,
 								height: `${100 - topPoleHeight - spaceBW}vh`,
 							}}
 							ref={(ref) => poleRefs.current.push(ref)}
