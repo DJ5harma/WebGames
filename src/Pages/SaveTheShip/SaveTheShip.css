@@ -14,12 +14,6 @@
 	animation: rightToLeft 15s forwards;
 }
 
-@keyframes jump {
-	100% {
-		top: 10vh;
-	}
-}
-
 #Ship {
 	position: absolute;
 	width: 30px;
