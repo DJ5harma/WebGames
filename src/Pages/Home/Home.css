@@ -1,3 +1,10 @@
+@keyframes buttonAnimation {
+	50% {
+		border-radius: 5px;
+		padding: 12px;
+	}
+}
+
 #Home {
 	width: 100%;
 	height: 100%;
@@ -9,10 +16,15 @@
 
 	h1 {
 		font-size: 30;
-		background-color: rgb(20, 20, 20);
+		background-color: rgb(9, 9, 9);
 		padding: 20px;
 		width: 100%;
 		text-align: center;
 		font-weight: lighter;
+	}
+
+	button {
+		border: none;
+		animation: buttonAnimation 2s forwards infinite;
 	}
 }
