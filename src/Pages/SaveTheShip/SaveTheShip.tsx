@@ -60,6 +60,10 @@ export default function SaveTheShip() {
 	}
 
 	useEffect(() => {
+		document.title = "Save the Ship";
+	}, []);
+
+	useEffect(() => {
 		const intervalTime = isMobile ? 1500 : 900;
 
 		const polesInterval = setInterval(() => {
@@ -73,8 +77,6 @@ export default function SaveTheShip() {
 					},${Math.random() * 200 + 55})`,
 				},
 			]);
-
-			console.log(poleRefs);
 		}, intervalTime);
 
 		const removePolesInterval = setTimeout(() => {

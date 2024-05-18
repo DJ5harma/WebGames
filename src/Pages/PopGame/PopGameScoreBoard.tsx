@@ -4,7 +4,8 @@ export default function PopGameScoreBoard() {
 	const location = useLocation();
 
 	const { data } = location.state;
-	const { clickCount, popCount, misses, accuracy } = data;
+	const { popCount, accuracy } = data;
+	// const {clickCount, misses} = data;
 
 	return (
 		<div
@@ -19,11 +20,11 @@ export default function PopGameScoreBoard() {
 			}}
 		>
 			<h2>!End!</h2>
-			<h2>____Your Score____</h2>
-			<p>Click Count: {clickCount}</p>
-			<p>Pop Count: {popCount}</p>
-			<p>Accuracy: {accuracy}</p>
-			<p>Misses: {misses}</p>
+			{/* <h2>____Your Score____</h2> */}
+			{/* <p>Click Count: {clickCount}</p> */}
+			<p style={{ fontSize: 20 }}>Pop Count: {popCount}</p>
+			<p style={{ fontSize: 20 }}>Accuracy: {accuracy}</p>
+			{/* <p>Misses: {misses}</p> */}
 
 			<Link to="/pop-game">
 				<button>Play Again!</button>

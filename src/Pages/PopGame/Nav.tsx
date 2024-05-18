@@ -57,7 +57,7 @@ const Nav = ({
 					fontSize: isMobile ? 16 : 22,
 				}}
 			>
-				Time: {timeRemaining}
+				Time: {timeRemaining}s
 			</p>
 		</nav>
 	);

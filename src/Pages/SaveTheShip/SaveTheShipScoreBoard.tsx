@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export default function PopGameScoreBoard() {
@@ -5,6 +6,10 @@ export default function PopGameScoreBoard() {
 
 	const { data } = location.state;
 	const { polesObserved } = data;
+
+	useEffect(() => {
+		document.title = "Save the Ship Score";
+	}, []);
 
 	return (
 		<div

@@ -1,44 +1,5 @@
-import { ReactNode, useEffect } from "react";
-import { Link } from "react-router-dom";
-
-const GameSnippet = ({
-	linkPath,
-	name,
-	description,
-	bgColor,
-	image,
-}: {
-	linkPath: string;
-	name: string;
-	description: string;
-	bgColor: string;
-	image: ReactNode;
-}) => {
-	return (
-		<div
-			style={{
-				border: "solid",
-				padding: 20,
-				borderRadius: 20,
-				alignItems: "center",
-				gap: 10,
-				width: "100%",
-				display: "flex",
-				flexDirection: "column",
-				backgroundColor: bgColor,
-			}}
-		>
-			<div style={{ display: "flex", alignItems: "center" }}>
-				<h2 style={{ display: "inline", marginRight: 10 }}>{name}</h2>
-				<Link to={linkPath}>
-					<button>Play!</button>
-				</Link>
-				<div style={{ marginLeft: 8 }}>{image}</div>
-			</div>
-			<p>{description}</p>
-		</div>
-	);
-};
+import { useEffect } from "react";
+import GameSnippet from "./GameSnippet";
 
 export default function Home() {
 	const imageWidth = 30;
@@ -58,7 +19,7 @@ export default function Home() {
 			}}
 		>
 			<p style={{ fontSize: 30 }}>Games... by Dhananjay </p>
-			<p>(More to be added)</p>
+			<p>( More to be added )</p>
 			<GameSnippet
 				linkPath="/save-the-ship"
 				name="Save the Ship"
