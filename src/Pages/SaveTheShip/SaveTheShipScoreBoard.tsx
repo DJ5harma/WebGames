@@ -20,11 +20,6 @@ export default function PopGameScoreBoard() {
 		>
 			<h2>!End!</h2>
 			<h3>Poles observed: {polesObserved}</h3>
-			{/* <h2>____Your Score____</h2>
-			<p>Click Count: {clickCount}</p>
-			<p>Pop Count: {popCount}</p>
-			<p>Accuracy: {accuracy}</p>
-			<p>Misses: {misses}</p> */}
 
 			<Link to="/save-the-ship">
 				<button>Play Again!</button>

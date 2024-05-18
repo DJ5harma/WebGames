@@ -4,6 +4,9 @@ import Ship from "./Ship";
 import { isMobile } from "react-device-detect";
 import { useNavigate } from "react-router-dom";
 
+// import bloopAudio from "../../assets/bloop.mp3";
+import happyPopAudio from "../../assets/happy-pop.mp3";
+
 export default function SaveTheShip() {
 	const [poleHeights, setPoleHeights] = useState([
 		{
@@ -25,6 +28,9 @@ export default function SaveTheShip() {
 
 	const navigate = useNavigate();
 
+	// const clickAudio = new Audio(bloopAudio);
+	const popAudio = new Audio(happyPopAudio);
+
 	function checkCollision() {
 		if (!shipRef.current) return;
 		const shipRect = shipRef.current.getBoundingClientRect();
@@ -39,6 +45,7 @@ export default function SaveTheShip() {
 					shipRect.top < poleRect.top + poleRect.height &&
 					shipRect.top + shipRect.height > poleRect.top
 				) {
+					popAudio.play();
 					navigate("/save-the-ship-scoreboard", {
 						state: {
 							data: {
@@ -94,6 +101,7 @@ export default function SaveTheShip() {
 			}}
 			onClick={() => {
 				setShipDirection((prev) => (prev === "up" ? "down" : "up"));
+				// clickAudio.play();
 			}}
 		>
 			{poleHeights.map(({ topPoleHeight, index, color }) => {
@@ -105,7 +113,7 @@ export default function SaveTheShip() {
 						key={index}
 						className="TwoPolesAndSpacing"
 						style={{
-							width: 30,
+							width: isMobile ? 30 : 45,
 						}}
 					>
 						<div
