@@ -9,7 +9,7 @@ const Nav = ({
 	popCount: number;
 	clickCount: number;
 }) => {
-	const [timeRemaining, setTimeRemaining] = useState(6);
+	const [timeRemaining, setTimeRemaining] = useState(60);
 	const navigate = useNavigate();
 	useEffect(() => {
 		setInterval(() => {

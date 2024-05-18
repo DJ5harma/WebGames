@@ -13,13 +13,13 @@ const About = () => {
 				</a>
 			</p>
 			<p>
-				GitHub :
+				GitHub:
 				<a href="https://github.com/DJ5harma/">
 					https://github.com/DJ5harma
 				</a>
 			</p>
 			<p>
-				LinkedIn :
+				LinkedIn:
 				<a href="https://www.linkedin.com/in/dhananjay-sharma-016550254/">
 					https://www.linkedin.com/in/dhananjay-sharma-016550254/
 				</a>
