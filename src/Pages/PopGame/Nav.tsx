@@ -39,6 +39,7 @@ const Nav = ({
 				position: "fixed",
 				top: 15,
 				width: "100vw",
+				userSelect: "none",
 			}}
 		>
 			<p>Pops: {popCount}</p>

@@ -123,6 +123,7 @@ export default function SaveTheShip() {
 								justifyContent: "center",
 								alignItems: "center",
 								fontSize: 25,
+								userSelect: "none",
 							}}
 						>
 							{index}
