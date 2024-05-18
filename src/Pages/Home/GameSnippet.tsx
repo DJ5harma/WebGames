@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 
+import bloopAudio from "../../assets/bloop.mp3";
+
 const GameSnippet = ({
 	linkPath,
 	name,
@@ -14,12 +16,14 @@ const GameSnippet = ({
 	bgColor: string;
 	image: ReactNode;
 }) => {
+	const clickAudio = new Audio(bloopAudio);
+
 	return (
 		<div
 			style={{
-				border: "solid",
+				// border: "solid",
 				padding: 20,
-				borderRadius: 20,
+				borderRadius: 10,
 				alignItems: "center",
 				gap: 10,
 				width: "100%",
@@ -30,7 +34,7 @@ const GameSnippet = ({
 		>
 			<div style={{ display: "flex", alignItems: "center" }}>
 				<h2 style={{ display: "inline", marginRight: 10 }}>{name}</h2>
-				<Link to={linkPath}>
+				<Link to={linkPath} onClick={() => clickAudio.play()}>
 					<button>Play!</button>
 				</Link>
 				<div style={{ marginLeft: 8 }}>{image}</div>

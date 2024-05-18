@@ -26,7 +26,7 @@ export default function PopGameScoreBoard() {
 			<p style={{ fontSize: 20 }}>Accuracy: {accuracy}</p>
 			{/* <p>Misses: {misses}</p> */}
 
-			<Link to="/pop-game">
+			<Link to="/pebble-popper">
 				<button>Play Again!</button>
 			</Link>
 		</div>

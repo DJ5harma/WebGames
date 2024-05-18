@@ -1,24 +1,16 @@
 import { useEffect } from "react";
 import GameSnippet from "./GameSnippet";
 
+import "./Home.css";
+
 export default function Home() {
 	const imageWidth = 30;
 	useEffect(() => {
-		document.title = "WebGames TS";
+		document.title = "WebGames";
 	}, []);
 	return (
-		<div
-			style={{
-				width: "100%",
-				height: "100%",
-				display: "flex",
-				justifyContent: "center",
-				flexDirection: "column",
-				alignItems: "center",
-				gap: 20,
-			}}
-		>
-			<p style={{ fontSize: 30 }}>Games... by Dhananjay </p>
+		<div id="Home">
+			<h1>Games... by Dhananjay </h1>
 			<p>( More to be added )</p>
 			<GameSnippet
 				linkPath="/save-the-ship"
@@ -44,8 +36,8 @@ export default function Home() {
 				}
 			/>
 			<GameSnippet
-				linkPath="/pop-game"
-				name="Pebble Popping Game"
+				linkPath="/pebble-popper"
+				name="Pebble Popper"
 				description="Accurately pop pebbles asap for satisfaction!"
 				bgColor="rgb(100,0,0)"
 				image={

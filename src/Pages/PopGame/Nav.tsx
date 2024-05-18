@@ -9,7 +9,7 @@ const Nav = ({
 	popCount: number;
 	clickCount: number;
 }) => {
-	const [timeRemaining, setTimeRemaining] = useState(60);
+	const [timeRemaining, setTimeRemaining] = useState(6);
 	const navigate = useNavigate();
 	useEffect(() => {
 		setInterval(() => {
@@ -18,7 +18,7 @@ const Nav = ({
 	}, [timeRemaining]);
 
 	if (timeRemaining <= 0) {
-		navigate("/pop-game-scoreboard", {
+		navigate("/pebble-popper-scoreboard", {
 			state: {
 				data: {
 					clickCount,

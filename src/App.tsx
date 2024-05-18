@@ -14,9 +14,9 @@ function App() {
 		<div style={{ width: "100vw", height: "100vh" }}>
 			<Routes>
 				<Route index element={<Home />} />
-				<Route path="/pop-game" element={<PopGame />} />
+				<Route path="/pebble-popper" element={<PopGame />} />
 				<Route
-					path="/pop-game-scoreboard"
+					path="/pebble-popper-scoreboard"
 					element={<PopGameScoreBoard />}
 				/>
 				<Route path="/save-the-ship" element={<SaveTheShip />} />
