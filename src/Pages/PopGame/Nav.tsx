@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { isMobile } from "react-device-detect";
 import { useNavigate } from "react-router-dom";
 
 const Nav = ({
@@ -42,11 +43,22 @@ const Nav = ({
 				userSelect: "none",
 			}}
 		>
-			<p>Pops: {popCount}</p>
-			<p>Clicks: {clickCount}</p>
-			<p>Misses: {clickCount - popCount}</p>
-			<p>Acc: {((popCount / clickCount) * 100).toFixed(2)} % </p>
-			<p style={{ color: "rgb(255, 50, 50)" }}>Time: {timeRemaining}</p>
+			<p style={{ fontSize: isMobile ? 16 : 22 }}>Pops: {popCount}</p>
+			{/* <p style={{ fontSize: isMobile ? 16 : 22 }}>Clicks: {clickCount}</p> */}
+			<p style={{ fontSize: isMobile ? 16 : 22 }}>
+				Misses: {clickCount - popCount}
+			</p>
+			<p style={{ fontSize: isMobile ? 16 : 22 }}>
+				Acc: {((popCount / clickCount) * 100).toFixed(2)} %{" "}
+			</p>
+			<p
+				style={{
+					color: "rgb(255, 50, 50)",
+					fontSize: isMobile ? 16 : 22,
+				}}
+			>
+				Time: {timeRemaining}
+			</p>
 		</nav>
 	);
 };

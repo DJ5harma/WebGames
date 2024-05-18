@@ -4,7 +4,7 @@ const RandObject = () => (
 		style={{
 			position: "absolute",
 			top: `${Math.random() * 80}vh`,
-			left: `${Math.random() * 80}vw`,
+			left: `${Math.random() * 80 + 10}vw`,
 			backgroundColor: `rgb(${Math.random() * 200 + 55},${
 				Math.random() * 200 + 55
 			},${Math.random() * 200 + 55})`,

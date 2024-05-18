@@ -105,7 +105,7 @@ export default function SaveTheShip() {
 						key={index}
 						className="TwoPolesAndSpacing"
 						style={{
-							width: isMobile ? 30 : 100,
+							width: 30,
 						}}
 					>
 						<div
