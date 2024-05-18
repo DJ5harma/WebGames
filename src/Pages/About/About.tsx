@@ -3,7 +3,9 @@ const About = () => {
 	return (
 		<div id="About">
 			<h3>Hi! its Dhananjay, aka Sunu Sharma.</h3>
-			<p>I hope you liked this attempt of mine!</p>
+			<p style={{ margin: "15px 0" }}>
+				I hope you liked this attempt of mine!
+			</p>
 			<p>
 				E-mail here for feedbacks:
 				<a href="mailto:sunubhargav2004@gmail.com">
