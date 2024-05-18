@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import GameSnippet from "./GameSnippet";
 
 import "./Home.css";
+import { Link } from "react-router-dom";
 
 export default function Home() {
 	const imageWidth = 30;
@@ -58,6 +59,11 @@ export default function Home() {
 					</svg>
 				}
 			/>
+			<button>
+				<Link to="/about" style={{ textDecoration: "none" }}>
+					About me
+				</Link>
+			</button>
 		</div>
 	);
 }

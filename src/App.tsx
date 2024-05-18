@@ -5,6 +5,8 @@ import Home from "./Pages/Home/Home";
 import { useState } from "react";
 import SaveTheShipScoreBoard from "./Pages/SaveTheShip/SaveTheShipScoreBoard";
 import SaveTheShip from "./Pages/SaveTheShip/SaveTheShip";
+import NotFound from "./Pages/NotFound/NotFound";
+import About from "./Pages/About/About";
 
 function App() {
 	const [verifyGoingToHome, setVerifyGoingToHome] = useState(false);
@@ -24,6 +26,8 @@ function App() {
 					path="/save-the-ship-scoreboard"
 					element={<SaveTheShipScoreBoard />}
 				/>
+				<Route path="/about" element={<About />} />
+				<Route path="*" element={<NotFound />} />
 			</Routes>
 
 			{!verifyGoingToHome && location.pathname !== "/" && (
