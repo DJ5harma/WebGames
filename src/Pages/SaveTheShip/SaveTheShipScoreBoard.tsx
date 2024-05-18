@@ -11,8 +11,8 @@ export default function PopGameScoreBoard() {
 	const popAudio = new Audio(happyPopAudio);
 
 	useEffect(() => {
-		document.title = "Save the Ship Score";
 		popAudio.play();
+		document.title = "Save the Ship Score";
 	}, []);
 
 	return (
