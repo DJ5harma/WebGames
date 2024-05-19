@@ -5,6 +5,8 @@ import { isMobile } from "react-device-detect";
 import bloopAudio from "../../assets/bloop.mp3";
 import happyPopAudio from "../../assets/happy-pop.mp3";
 import celebrationAudio from "../../assets/celebration.mp3";
+import ScoreBoard from "./ScoreBoard";
+import DisplayText from "./DisplayText";
 
 export default function ZeroKaanta() {
 	const clickAudio = new Audio(bloopAudio);
@@ -20,6 +22,12 @@ export default function ZeroKaanta() {
 
 	const [winnerIsThere, setWinnerIsThere] = useState(false);
 
+	const [scores, setScores] = useState({
+		X: 0,
+		O: 0,
+		DRAWS: 0,
+	});
+
 	function checkWinner(n1: number, n2: number, n3: number) {
 		if (filledArray[n1] === " ") return false;
 		if (
@@ -27,9 +35,12 @@ export default function ZeroKaanta() {
 			filledArray[n2] === filledArray[n3] &&
 			filledArray[n3] === filledArray[n1]
 		) {
+			if (turn % 2) setScores({ ...scores, X: scores.X + 1 });
+			else setScores({ ...scores, O: scores.O + 1 });
 			winSound.play();
 			return true;
 		}
+		if (turn === 9) setScores({ ...scores, DRAWS: scores.DRAWS + 1 });
 
 		return false;
 	}
@@ -39,8 +50,8 @@ export default function ZeroKaanta() {
 			<button
 				className="clickSpace"
 				style={{
-					width: isMobile ? "20vw" : "9vw",
-					height: isMobile ? "20vw" : "9vw",
+					width: isMobile ? "28vw" : "10vw",
+					height: isMobile ? "28vw" : "10vw",
 					borderRadius: 8,
 				}}
 				onClick={() => {
@@ -61,7 +72,7 @@ export default function ZeroKaanta() {
 				<pre
 					style={{
 						fontFamily: "monospace",
-						fontSize: 30,
+						fontSize: isMobile ? 30 : 50,
 					}}
 				>
 					{filledArray[number]}
@@ -104,21 +115,9 @@ export default function ZeroKaanta() {
 				})()})`,
 			}}
 		>
-			<h2
-				style={{
-					backgroundColor: "black",
-					padding: "10px 20px",
-					borderRadius: 20,
-					userSelect: "none",
-				}}
-			>
-				{(() => {
-					if (winnerIsThere)
-						return `Winner is ${turn % 2 ? "X" : "O"}`;
-					else if (turn === 9) return "DRAW!";
-					else return `Turn of ${turn % 2 ? "O" : "X"}`;
-				})()}
-			</h2>
+			<ScoreBoard scores={scores} />
+
+			<DisplayText winnerIsThere={winnerIsThere} turn={turn} />
 
 			<div>
 				<div>
