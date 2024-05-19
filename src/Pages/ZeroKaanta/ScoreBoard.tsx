@@ -18,7 +18,7 @@ export default function ScoreBoard({
 				position: "fixed",
 				top: 0,
 				left: 0,
-				padding: isMobile ? 18 : 30,
+				padding: isMobile ? 15 : 30,
 				borderRadius: 10,
 				display: "flex",
 				flexDirection: "column",

@@ -131,9 +131,10 @@ export default function ZeroKaanta() {
 					borderRadius: 20,
 					userSelect: "none",
 					textAlign: "center",
+					color: "rgb(140, 255, 140)",
 				}}
 			>
-				<p style={{ color: "rgb(140, 255, 140)" }}>Game {gameNumber}</p>
+				<p>Game {gameNumber}</p>
 				<p>
 					{(() => {
 						if (winnerIsThere)
@@ -209,6 +210,7 @@ export default function ZeroKaanta() {
 							turnOf: 1,
 						});
 						setWinningBoxes([]);
+						setDrawn(false);
 					}}
 				>
 					Reset everything
