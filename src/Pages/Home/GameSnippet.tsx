@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 import bloopAudio from "../../assets/bloop.mp3";
+import { isMobile } from "react-device-detect";
 
 const GameSnippet = ({
 	linkPath,
@@ -39,7 +40,7 @@ const GameSnippet = ({
 				</Link>
 				<div style={{ marginLeft: 8 }}>{image}</div>
 			</div>
-			<p>{description}</p>
+			<p style={{ fontSize: isMobile ? 14 : 20 }}>{description}</p>
 		</div>
 	);
 };

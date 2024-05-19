@@ -7,6 +7,7 @@ import SaveTheShipScoreBoard from "./Pages/SaveTheShip/SaveTheShipScoreBoard";
 import SaveTheShip from "./Pages/SaveTheShip/SaveTheShip";
 import NotFound from "./Pages/NotFound/NotFound";
 import About from "./Pages/About/About";
+import ZeroKaanta from "./Pages/ZeroKaanta/ZeroKaanta";
 
 function App() {
 	const [verifyGoingToHome, setVerifyGoingToHome] = useState(false);
@@ -26,6 +27,7 @@ function App() {
 					path="/save-the-ship-scoreboard"
 					element={<SaveTheShipScoreBoard />}
 				/>
+				<Route path="/zero-kaanta" element={<ZeroKaanta />} />
 				<Route path="/about" element={<About />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
