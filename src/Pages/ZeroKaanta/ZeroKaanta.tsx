@@ -8,6 +8,7 @@ import bloopAudio from "../../assets/bloop.mp3";
 import happyPopAudio from "../../assets/happy-pop.mp3";
 import celebrationAudio from "../../assets/celebration.mp3";
 import failAudio from "../../assets/fail.mp3";
+import DisplayText from "./DisplayText";
 
 export default function ZeroKaanta() {
 	const clickAudio = new Audio(bloopAudio);
@@ -49,7 +50,7 @@ export default function ZeroKaanta() {
 					return;
 				}
 			setIsWinning(false);
-		}, [winningBoxes.length]);
+		}, [winningBoxes]);
 
 		return (
 			<button
@@ -124,31 +125,12 @@ export default function ZeroKaanta() {
 		>
 			<ScoreBoard playerStruct={playerStruct} />
 
-			<h2
-				style={{
-					backgroundColor: "black",
-					padding: "10px 20px",
-					borderRadius: 20,
-					userSelect: "none",
-					textAlign: "center",
-					color: "rgb(140, 255, 140)",
-				}}
-			>
-				<p>Game {gameNumber}</p>
-				<p>
-					{(() => {
-						if (winnerIsThere)
-							return `Winner is ${
-								playerStruct.turnOf === 1 ? "X" : "O"
-							}`;
-						else if (drawn) return "DRAW!";
-						else
-							return `Turn of ${
-								playerStruct.turnOf === 1 ? "X" : "O"
-							}`;
-					})()}
-				</p>
-			</h2>
+			<DisplayText
+				drawn={drawn}
+				gameNumber={gameNumber}
+				playerStruct={playerStruct}
+				winnerIsThere={winnerIsThere}
+			/>
 
 			<div>
 				<div>
@@ -186,17 +168,7 @@ export default function ZeroKaanta() {
 				</button>
 			)}
 
-			<div
-				style={{
-					position: "fixed",
-					top: 10,
-					right: 10,
-					display: "flex",
-					flexDirection: "column",
-					justifyContent: "center",
-					gap: 10,
-				}}
-			>
+			<div id="reset-everything-button">
 				<button
 					onClick={() => {
 						popAudio.play();

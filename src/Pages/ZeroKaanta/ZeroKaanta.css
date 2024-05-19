@@ -13,4 +13,14 @@
 		color: black;
 		background-color: white;
 	}
+
+	#reset-everything-button {
+		position: fixed;
+		top: 10px;
+		right: 10px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 10px;
+	}
 }
