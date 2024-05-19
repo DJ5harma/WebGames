@@ -104,7 +104,14 @@ export default function ZeroKaanta() {
 				})()})`,
 			}}
 		>
-			<h2>
+			<h2
+				style={{
+					backgroundColor: "black",
+					padding: "10px 20px",
+					borderRadius: 20,
+					userSelect: "none",
+				}}
+			>
 				{(() => {
 					if (winnerIsThere)
 						return `Winner is ${turn % 2 ? "X" : "O"}`;
@@ -130,16 +137,18 @@ export default function ZeroKaanta() {
 					<CustomButton number={8} />
 				</div>
 			</div>
-			<button
-				onClick={() => {
-					setFilledArray(initialState);
-					setWinnerIsThere(false);
-					setTurn(0);
-					popAudio.play();
-				}}
-			>
-				{winnerIsThere || turn === 9 ? "Play Again!" : "Reset"}
-			</button>
+			{turn !== 0 && (
+				<button
+					onClick={() => {
+						setFilledArray(initialState);
+						setWinnerIsThere(false);
+						setTurn(0);
+						popAudio.play();
+					}}
+				>
+					{winnerIsThere || turn === 9 ? "Play Again!" : "Reset"}
+				</button>
+			)}
 		</div>
 	);
 }
