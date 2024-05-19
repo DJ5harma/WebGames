@@ -1,4 +1,9 @@
-export default function checkWin(filledArray: (" " | "O" | "X")[]) {
+import { Dispatch, SetStateAction } from "react";
+
+export default function checkWin(
+	filledArray: (" " | "O" | "X")[],
+	setWinningBoxes: Dispatch<SetStateAction<number[]>>
+) {
 	function areEqual(n1: number, n2: number, n3: number) {
 		if (filledArray[n1] === " ") return false;
 		if (
@@ -6,6 +11,7 @@ export default function checkWin(filledArray: (" " | "O" | "X")[]) {
 			filledArray[n2] === filledArray[n3] &&
 			filledArray[n3] === filledArray[n1]
 		) {
+			setWinningBoxes([n1, n2, n3]);
 			return true;
 		}
 	}

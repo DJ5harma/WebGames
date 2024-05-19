@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./ZeroKaanta.css";
 import { isMobile } from "react-device-detect";
 import checkWin from "./checkWin";
@@ -7,11 +7,13 @@ import ScoreBoard from "./ScoreBoard";
 import bloopAudio from "../../assets/bloop.mp3";
 import happyPopAudio from "../../assets/happy-pop.mp3";
 import celebrationAudio from "../../assets/celebration.mp3";
+import failAudio from "../../assets/fail.mp3";
 
 export default function ZeroKaanta() {
 	const clickAudio = new Audio(bloopAudio);
 	const popAudio = new Audio(happyPopAudio);
-	const gameOverSound = new Audio(celebrationAudio);
+	const winSound = new Audio(celebrationAudio);
+	const drawSound = new Audio(failAudio);
 
 	const initialState: " "[] = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
 
@@ -35,7 +37,20 @@ export default function ZeroKaanta() {
 		turnOf: 1,
 	});
 
+	const [winningBoxes, setWinningBoxes] = useState<number[]>([]);
+
 	const CustomButton = ({ number }: { number: number }) => {
+		const [isWinning, setIsWinning] = useState(false);
+
+		useEffect(() => {
+			for (let i = 0; i < 3; i++)
+				if (winningBoxes[i] === number) {
+					setIsWinning(true);
+					return;
+				}
+			setIsWinning(false);
+		}, [winningBoxes.length]);
+
 		return (
 			<button
 				className="clickSpace"
@@ -43,6 +58,9 @@ export default function ZeroKaanta() {
 					width: isMobile ? "28vw" : "10vw",
 					height: isMobile ? "28vw" : "10vw",
 					borderRadius: 8,
+					backgroundColor: isWinning ? "black" : "white",
+					color: isWinning ? "white" : "black",
+					border: isWinning ? "none" : "default",
 				}}
 				onClick={() => {
 					if (winnerIsThere || filledArray[number] !== " ") return;
@@ -51,20 +69,20 @@ export default function ZeroKaanta() {
 					filledArray[number] = playerStruct.turnOf === 1 ? "X" : "O";
 					setFilledArray([...filledArray]);
 
-					if (checkWin(filledArray)) {
+					if (checkWin(filledArray, setWinningBoxes)) {
 						setWinnerIsThere(true);
 
 						const winner = playerStruct.turnOf;
 						if (winner === 1 || winner === 2)
 							playerStruct[winner].wins++;
 						setPlayerStruct({ ...playerStruct });
-						gameOverSound.play();
+						winSound.play();
 						return;
 					}
 					(() => {
 						for (let i = 0; i < 9; i++)
-							if (filledArray[i] === " ") return;
-						gameOverSound.play();
+							if (filledArray[i] === " ") return; // checking if not drawn
+						drawSound.play();
 						setDrawn(true);
 						playerStruct.DRAWS++;
 						setPlayerStruct({
@@ -115,19 +133,20 @@ export default function ZeroKaanta() {
 					textAlign: "center",
 				}}
 			>
-				Game {gameNumber}
-				<br />
-				{(() => {
-					if (winnerIsThere)
-						return `Winner is ${
-							playerStruct.turnOf === 1 ? "X" : "O"
-						}`;
-					else if (drawn) return "DRAW!";
-					else
-						return `Turn of ${
-							playerStruct.turnOf === 1 ? "X" : "O"
-						}`;
-				})()}
+				<p style={{ color: "rgb(140, 255, 140)" }}>Game {gameNumber}</p>
+				<p>
+					{(() => {
+						if (winnerIsThere)
+							return `Winner is ${
+								playerStruct.turnOf === 1 ? "X" : "O"
+							}`;
+						else if (drawn) return "DRAW!";
+						else
+							return `Turn of ${
+								playerStruct.turnOf === 1 ? "X" : "O"
+							}`;
+					})()}
+				</p>
 			</h2>
 
 			<div>
@@ -159,6 +178,7 @@ export default function ZeroKaanta() {
 							...playerStruct,
 							turnOf: playerStruct.turnOf === 1 ? 2 : 1,
 						});
+						setWinningBoxes([]);
 					}}
 				>
 					Play Again!
@@ -188,6 +208,7 @@ export default function ZeroKaanta() {
 							DRAWS: 0,
 							turnOf: 1,
 						});
+						setWinningBoxes([]);
 					}}
 				>
 					Reset everything
