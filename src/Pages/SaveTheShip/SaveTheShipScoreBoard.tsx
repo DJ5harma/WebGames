@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import happyPopAudio from "../../assets/happy-pop.mp3";
+// import happyPopAudio from "../../assets/happy-pop.mp3";
 
 export default function PopGameScoreBoard() {
 	const location = useLocation();
@@ -8,10 +8,10 @@ export default function PopGameScoreBoard() {
 	const { data } = location.state;
 	const { polesObserved } = data;
 
-	const popAudio = new Audio(happyPopAudio);
+	// const popAudio = new Audio(happyPopAudio);
 
 	useEffect(() => {
-		popAudio.play();
+		// popAudio.play();
 		document.title = "Save the Ship Score";
 	}, []);
 

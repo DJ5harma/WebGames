@@ -1,6 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
 
-import "./PopGame.css";
+import "./PebblePopper.css";
 
 import bloopAudio from "../../assets/bloop.mp3";
 import happyPopAudio from "../../assets/happy-pop.mp3";
@@ -8,7 +8,7 @@ import happyPopAudio from "../../assets/happy-pop.mp3";
 import RandObject from "./RandObject";
 import Nav from "./Nav";
 
-function PopGame() {
+function PebblePopper() {
 	useEffect(() => {
 		document.title = "Pebble Popper";
 	}, []);
@@ -69,4 +69,4 @@ function PopGame() {
 	);
 }
 
-export default PopGame;
+export default PebblePopper;

@@ -94,6 +94,7 @@ export default function SaveTheShip() {
 
 	return (
 		<div
+			id="Canvas"
 			style={{
 				height: "100vh",
 				display: "flex",

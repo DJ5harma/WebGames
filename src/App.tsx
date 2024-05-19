@@ -1,6 +1,6 @@
 import { Link, Route, Routes, useLocation } from "react-router-dom";
-import PopGame from "./Pages/PopGame/PopGame";
-import PopGameScoreBoard from "./Pages/PopGame/PopGameScoreBoard";
+import PebblePopper from "./Pages/PebblePopper/PebblePopper";
+import PebblePopperScoreBoard from "./Pages/PebblePopper/PebblePopperScoreboard";
 import Home from "./Pages/Home/Home";
 import { useState } from "react";
 import SaveTheShipScoreBoard from "./Pages/SaveTheShip/SaveTheShipScoreBoard";
@@ -17,10 +17,10 @@ function App() {
 		<div style={{ width: "100vw", height: "100vh" }}>
 			<Routes>
 				<Route index element={<Home />} />
-				<Route path="/pebble-popper" element={<PopGame />} />
+				<Route path="/pebble-popper" element={<PebblePopper />} />
 				<Route
 					path="/pebble-popper-scoreboard"
-					element={<PopGameScoreBoard />}
+					element={<PebblePopperScoreBoard />}
 				/>
 				<Route path="/save-the-ship" element={<SaveTheShip />} />
 				<Route

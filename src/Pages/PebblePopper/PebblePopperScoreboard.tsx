@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-export default function PopGameScoreBoard() {
+export default function PebblePopperScoreBoard() {
 	const location = useLocation();
 
 	const { data } = location.state;
