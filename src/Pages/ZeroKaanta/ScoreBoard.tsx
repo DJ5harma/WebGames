@@ -1,38 +1,31 @@
 export default function ScoreBoard({
-	scores,
+	playerStruct,
 }: {
-	scores: {
-		X: number;
-		O: number;
+	playerStruct: {
+		1: { wins: number };
+		2: { wins: number };
 		DRAWS: number;
+		turnOf: 1 | 2;
 	};
 }) {
 	return (
 		<div
 			style={{
+				backgroundColor: "black",
+				fontSize: 25,
 				position: "fixed",
 				top: 0,
 				left: 0,
-				backgroundColor: "black",
-				display: "flex",
-				flexDirection: "column",
-				padding: 20,
-				alignItems: "center",
+				padding: 30,
 				borderRadius: 10,
 			}}
 		>
-			<h2>Scores</h2>
-			<p
-				style={{
-					fontSize: 20,
-				}}
-			>
-				X: {scores.X}
-				<br />
-				O: {scores.O}
-				<br />
-			</p>
-			<p style={{ fontSize: 20 }}>Draws: {scores.DRAWS}</p>
+			<h2>Score</h2>
+			Player 1 : X {" -> "} {playerStruct[1].wins}
+			<br />
+			Player 2 : O {" -> "} {playerStruct[2].wins}
+			<br />
+			DRAWS: {playerStruct.DRAWS}
 		</div>
 	);
 }
