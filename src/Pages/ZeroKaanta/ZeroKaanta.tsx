@@ -197,10 +197,10 @@ export default function ZeroKaanta() {
 					id="go-to-move"
 					style={{
 						flexDirection: isMobile ? "row" : "column",
-						top: isMobile ? "default" : 0,
-						bottom: isMobile ? 50 : "default",
+						top: 0,
 						width: isMobile ? "100vw" : "default",
 						right: isMobile ? "default" : 0,
+						borderRadius: isMobile ? 0 : 20,
 					}}
 				>
 					<p>Undo</p>
