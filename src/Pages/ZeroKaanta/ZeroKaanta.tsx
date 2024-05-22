@@ -204,7 +204,7 @@ export default function ZeroKaanta() {
 					}}
 				>
 					<p>Undo</p>
-					{stateStore.map((state, i) => {
+					{stateStore.map((_, i) => {
 						return (
 							<button
 								key={i}
