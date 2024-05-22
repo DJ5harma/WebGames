@@ -1,57 +1,64 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./ZeroKaanta.css";
 import { isMobile } from "react-device-detect";
-import checkWin from "./checkWin";
 import ScoreBoard from "./ScoreBoard";
 
-import bloopAudio from "../../assets/bloop.mp3";
-import happyPopAudio from "../../assets/happy-pop.mp3";
-import celebrationAudio from "../../assets/celebration.mp3";
-import failAudio from "../../assets/fail.mp3";
 import DisplayText from "./DisplayText";
+import checkWin from "./checkWin";
+
+import bloopAudio from "../../assets/bloop.mp3";
+import popAudio from "../../assets/happy-pop.mp3";
+import failAudio from "../../assets/fail.mp3";
+import celebrationAudio from "../../assets/celebration.mp3";
 
 export default function ZeroKaanta() {
-	const clickAudio = new Audio(bloopAudio);
-	const popAudio = new Audio(happyPopAudio);
-	const winSound = new Audio(celebrationAudio);
-	const drawSound = new Audio(failAudio);
-
-	const initialState: " "[] = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
-
-	const [filledArray, setFilledArray] =
-		useState<("O" | "X" | " ")[]>(initialState);
+	const initial: (" " | "O" | "X")[] = [
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+	];
+	const [array, setArray] = useState<(" " | "O" | "X")[]>(initial);
+	const [stateStore, setStateStore] = useState<(" " | "O" | "X")[][]>([]);
 	const [gameNumber, setGameNumber] = useState(1);
 	const [winnerIsThere, setWinnerIsThere] = useState(false);
 	const [drawn, setDrawn] = useState(false);
 
 	const [playerStruct, setPlayerStruct] = useState<{
-		1: { wins: number };
-		2: { wins: number };
+		X: number;
+		O: number;
 		DRAWS: number;
-		turnOf: 1 | 2;
 	}>({
-		1: {
-			wins: 0,
-		},
-		2: { wins: 0 },
+		X: 0,
+		O: 0,
 		DRAWS: 0,
-		turnOf: 1,
 	});
 
 	const [winningBoxes, setWinningBoxes] = useState<number[]>([]);
 
+	const [clickAudio, resetAudio, winAudio, drawAudio] = [
+		new Audio(bloopAudio),
+		new Audio(popAudio),
+		new Audio(celebrationAudio),
+		new Audio(failAudio),
+	];
+
+	function turnOf() {
+		let filledSpaces = 0;
+		array.forEach((item) => {
+			if (item !== " ") filledSpaces++;
+		});
+
+		if ((gameNumber + filledSpaces) % 2 === 0) return "O";
+		return "X";
+	}
+
 	const CustomButton = ({ number }: { number: number }) => {
-		const [isWinning, setIsWinning] = useState(false);
-
-		useEffect(() => {
-			for (let i = 0; i < 3; i++)
-				if (winningBoxes[i] === number) {
-					setIsWinning(true);
-					return;
-				}
-			setIsWinning(false);
-		}, [winningBoxes]);
-
 		return (
 			<button
 				className="clickSpace"
@@ -59,41 +66,34 @@ export default function ZeroKaanta() {
 					width: isMobile ? "28vw" : "10vw",
 					height: isMobile ? "28vw" : "10vw",
 					borderRadius: 8,
-					backgroundColor: isWinning ? "black" : "white",
-					color: isWinning ? "white" : "black",
-					border: isWinning ? "none" : "default",
+					backgroundColor:
+						winningBoxes.filter((n) => n === number).length === 1
+							? "green"
+							: "white",
 				}}
 				onClick={() => {
-					if (winnerIsThere || filledArray[number] !== " ") return;
+					if (winnerIsThere || drawn || array[number] !== " ") return;
 					clickAudio.play();
 
-					filledArray[number] = playerStruct.turnOf === 1 ? "X" : "O";
-					setFilledArray([...filledArray]);
+					stateStore.push(array);
+					setStateStore([...stateStore]);
 
-					if (checkWin(filledArray, setWinningBoxes)) {
+					array[number] = turnOf();
+					setArray([...array]);
+
+					if (checkWin(array, setWinningBoxes)) {
 						setWinnerIsThere(true);
-
-						const winner = playerStruct.turnOf;
-						if (winner === 1 || winner === 2)
-							playerStruct[winner].wins++;
+						playerStruct[turnOf()]++;
 						setPlayerStruct({ ...playerStruct });
-						winSound.play();
-						return;
-					}
-					(() => {
-						for (let i = 0; i < 9; i++)
-							if (filledArray[i] === " ") return; // checking if not drawn
-						drawSound.play();
-						setDrawn(true);
+						winAudio.play();
+					} else if (
+						array.filter((val) => val === " ").length === 0
+					) {
 						playerStruct.DRAWS++;
-						setPlayerStruct({
-							...playerStruct,
-						});
-					})();
-					setPlayerStruct({
-						...playerStruct,
-						turnOf: playerStruct.turnOf === 1 ? 2 : 1,
-					});
+						setPlayerStruct({ ...playerStruct });
+						setDrawn(true);
+						drawAudio.play();
+					}
 				}}
 			>
 				<pre
@@ -102,7 +102,7 @@ export default function ZeroKaanta() {
 						fontSize: isMobile ? 30 : 50,
 					}}
 				>
-					{filledArray[number]}
+					{array[number]}
 				</pre>
 			</button>
 		);
@@ -118,7 +118,7 @@ export default function ZeroKaanta() {
 				backgroundColor: (() => {
 					if (winnerIsThere) return "rgb(10, 80, 10)";
 					if (drawn) return "rgb(80, 10, 80)";
-					if (playerStruct.turnOf === 1) return "rgb(10, 10, 80)";
+					if (turnOf() === "X") return "rgb(10, 10, 80)";
 					return "rgb(80, 10, 10)";
 				})(),
 			}}
@@ -128,8 +128,8 @@ export default function ZeroKaanta() {
 			<DisplayText
 				drawn={drawn}
 				gameNumber={gameNumber}
-				playerStruct={playerStruct}
 				winnerIsThere={winnerIsThere}
+				turnOf={turnOf()}
 			/>
 
 			<div>
@@ -152,42 +152,69 @@ export default function ZeroKaanta() {
 			{(drawn || winnerIsThere) && (
 				<button
 					onClick={() => {
-						popAudio.play();
-						setFilledArray(initialState);
 						setGameNumber(gameNumber + 1);
-						setWinnerIsThere(false);
+						setArray(initial);
+						setStateStore([]);
+
 						setDrawn(false);
-						setPlayerStruct({
-							...playerStruct,
-							turnOf: playerStruct.turnOf === 1 ? 2 : 1,
-						});
+						setWinnerIsThere(false);
 						setWinningBoxes([]);
+
+						resetAudio.play();
 					}}
 				>
 					Play Again!
 				</button>
 			)}
-
 			<div id="reset-everything-button">
 				<button
 					onClick={() => {
-						popAudio.play();
-						setFilledArray(initialState);
+						setArray(initial);
+						setStateStore([]);
 						setGameNumber(1);
-						setWinnerIsThere(false);
-						setPlayerStruct({
-							"1": { wins: 0 },
-							"2": { wins: 0 },
-							DRAWS: 0,
-							turnOf: 1,
-						});
+						setPlayerStruct({ X: 0, O: 0, DRAWS: 0 });
 						setWinningBoxes([]);
+						setWinnerIsThere(false);
 						setDrawn(false);
+						resetAudio.play();
 					}}
 				>
 					Reset everything
 				</button>
 			</div>
+			{stateStore.length > 0 && (
+				<div id="go-to-move">
+					<p>Go To Move </p>
+					{stateStore.map((state, i) => {
+						return (
+							<button
+								key={i}
+								onClick={() => {
+									if (i === 0) {
+										setArray(initial);
+										setStateStore([]);
+										return;
+									}
+
+									const newArray = stateStore[i - 1];
+									setArray([...newArray]);
+
+									stateStore.splice(i, stateStore.length - i);
+									setStateStore([...stateStore]);
+
+									setDrawn(false);
+									setWinnerIsThere(false);
+									setWinningBoxes([]);
+
+									clickAudio.play();
+								}}
+							>
+								{i}
+							</button>
+						);
+					})}
+				</div>
+			)}
 		</div>
 	);
 }

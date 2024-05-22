@@ -1,15 +1,15 @@
 import { Dispatch, SetStateAction } from "react";
 
 export default function checkWin(
-	filledArray: (" " | "O" | "X")[],
+	array: (" " | "O" | "X")[],
 	setWinningBoxes: Dispatch<SetStateAction<number[]>>
 ) {
 	function areEqual(n1: number, n2: number, n3: number) {
-		if (filledArray[n1] === " ") return false;
+		if (array[n1] === " ") return false;
 		if (
-			filledArray[n1] === filledArray[n2] &&
-			filledArray[n2] === filledArray[n3] &&
-			filledArray[n3] === filledArray[n1]
+			array[n1] === array[n2] &&
+			array[n2] === array[n3] &&
+			array[n3] === array[n1]
 		) {
 			setWinningBoxes([n1, n2, n3]);
 			return true;

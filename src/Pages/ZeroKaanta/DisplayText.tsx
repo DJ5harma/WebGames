@@ -1,18 +1,13 @@
 export default function DisplayText({
 	gameNumber,
-	playerStruct,
 	winnerIsThere,
 	drawn,
+	turnOf,
 }: {
 	gameNumber: number;
 	winnerIsThere: boolean;
-	playerStruct: {
-		DRAWS: number;
-		turnOf: 1 | 2;
-		1: { wins: number };
-		2: { wins: number };
-	};
 	drawn: boolean;
+	turnOf: "X" | "O";
 }) {
 	return (
 		<h2
@@ -27,15 +22,9 @@ export default function DisplayText({
 			<p style={{ color: "rgb(140, 255, 140)" }}>Game {gameNumber}</p>
 			<p>
 				{(() => {
-					if (winnerIsThere)
-						return `Winner is ${
-							playerStruct.turnOf === 1 ? "X" : "O"
-						}`;
+					if (winnerIsThere) return `Winner is ${turnOf}`;
 					else if (drawn) return "DRAW!";
-					else
-						return `Turn of ${
-							playerStruct.turnOf === 1 ? "X" : "O"
-						}`;
+					else return `Turn of ${turnOf}`;
 				})()}
 			</p>
 		</h2>

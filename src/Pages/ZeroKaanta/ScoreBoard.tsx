@@ -4,10 +4,9 @@ export default function ScoreBoard({
 	playerStruct,
 }: {
 	playerStruct: {
-		1: { wins: number };
-		2: { wins: number };
+		X: number;
+		O: number;
 		DRAWS: number;
-		turnOf: 1 | 2;
 	};
 }) {
 	return (
@@ -27,10 +26,10 @@ export default function ScoreBoard({
 		>
 			<h2>Score</h2>
 			<p style={{ color: "rgb(150, 150, 255)" }}>
-				Player 1 : X {" -> "} {playerStruct[1].wins}
+				Player 1 (X): {playerStruct.X}
 			</p>
 			<p style={{ color: "rgb(255, 150, 150)" }}>
-				Player 2 : O {" -> "} {playerStruct[2].wins}
+				Player 2 (O): {playerStruct.O}
 			</p>
 			<p style={{ color: "rgb(255, 150, 255 )" }}>
 				DRAWS: {playerStruct.DRAWS}
