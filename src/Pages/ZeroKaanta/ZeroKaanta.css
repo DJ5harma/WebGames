@@ -6,6 +6,17 @@
 		opacity: 1;
 	}
 }
+@keyframes zAxisMovement {
+	0% {
+		font-size: 40px;
+	}
+	50% {
+		font-size: 60px;
+	}
+	100% {
+		font-size: 40px;
+	}
+}
 
 #ZeroKaanta {
 	width: 100vw;

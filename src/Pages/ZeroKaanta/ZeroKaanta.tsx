@@ -67,7 +67,9 @@ export default function ZeroKaanta() {
 					height: isMobile ? "28vw" : "10vw",
 					borderRadius: 8,
 					backgroundColor: winningBoxes.includes(number)
-						? "green"
+						? turnOf() === "X"
+							? "rgb(255, 150, 150)"
+							: "rgb(150, 150, 255)"
 						: "white",
 
 					animation:
@@ -102,6 +104,9 @@ export default function ZeroKaanta() {
 					style={{
 						fontFamily: "monospace",
 						fontSize: isMobile ? 30 : 50,
+						animation: winningBoxes.includes(number)
+							? "zAxisMovement 2s infinite"
+							: "none",
 					}}
 				>
 					{array[number]}
@@ -118,7 +123,10 @@ export default function ZeroKaanta() {
 			id="ZeroKaanta"
 			style={{
 				backgroundColor: (() => {
-					if (winnerIsThere) return "rgb(10, 80, 10)";
+					if (winnerIsThere)
+						return turnOf() === "X"
+							? "rgb(80, 10, 10)"
+							: "rgb(10, 10, 80)";
 					if (drawn) return "rgb(80, 10, 80)";
 					if (turnOf() === "X") return "rgb(10, 10, 80)";
 					return "rgb(80, 10, 10)";
@@ -215,10 +223,6 @@ export default function ZeroKaanta() {
 
 									stateStore.splice(i, stateStore.length - i);
 									setStateStore([...stateStore]);
-
-									setDrawn(false);
-									setWinnerIsThere(false);
-									setWinningBoxes([]);
 								}}
 							>
 								{i}

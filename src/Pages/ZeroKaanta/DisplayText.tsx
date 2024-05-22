@@ -22,7 +22,8 @@ export default function DisplayText({
 			<p style={{ color: "rgb(140, 255, 140)" }}>Game {gameNumber}</p>
 			<p>
 				{(() => {
-					if (winnerIsThere) return `Winner is ${turnOf}`;
+					if (winnerIsThere)
+						return `Winner is ${turnOf === "O" ? "X" : "O"}`;
 					else if (drawn) return "DRAW!";
 					else return `Turn of ${turnOf}`;
 				})()}
