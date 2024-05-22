@@ -66,10 +66,14 @@ export default function ZeroKaanta() {
 					width: isMobile ? "28vw" : "10vw",
 					height: isMobile ? "28vw" : "10vw",
 					borderRadius: 8,
-					backgroundColor:
-						winningBoxes.filter((n) => n === number).length === 1
-							? "green"
-							: "white",
+					backgroundColor: winningBoxes.includes(number)
+						? "green"
+						: "white",
+
+					animation:
+						array.includes("O") || array.includes("X")
+							? "none"
+							: "easeIn 0.5s forwards",
 				}}
 				onClick={() => {
 					if (winnerIsThere || drawn || array[number] !== " ") return;
@@ -86,9 +90,7 @@ export default function ZeroKaanta() {
 						playerStruct[turnOf()]++;
 						setPlayerStruct({ ...playerStruct });
 						winAudio.play();
-					} else if (
-						array.filter((val) => val === " ").length === 0
-					) {
+					} else if (!array.includes(" ")) {
 						playerStruct.DRAWS++;
 						setPlayerStruct({ ...playerStruct });
 						setDrawn(true);
@@ -183,19 +185,31 @@ export default function ZeroKaanta() {
 				</button>
 			</div>
 			{stateStore.length > 0 && (
-				<div id="go-to-move">
-					<p>Go To Move </p>
+				<div
+					id="go-to-move"
+					style={{
+						flexDirection: isMobile ? "row" : "column",
+						top: isMobile ? "default" : 0,
+						bottom: isMobile ? "10vh" : "default",
+						width: isMobile ? "100vw" : "default",
+						right: isMobile ? "default" : 0,
+					}}
+				>
+					<p>Undo</p>
 					{stateStore.map((state, i) => {
 						return (
 							<button
 								key={i}
 								onClick={() => {
+									setDrawn(false);
+									setWinnerIsThere(false);
+									setWinningBoxes([]);
+									resetAudio.play();
 									if (i === 0) {
 										setArray(initial);
 										setStateStore([]);
 										return;
 									}
-
 									const newArray = stateStore[i - 1];
 									setArray([...newArray]);
 
@@ -205,8 +219,6 @@ export default function ZeroKaanta() {
 									setDrawn(false);
 									setWinnerIsThere(false);
 									setWinningBoxes([]);
-
-									clickAudio.play();
 								}}
 							>
 								{i}

@@ -1,3 +1,12 @@
+@keyframes easeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
 #ZeroKaanta {
 	width: 100vw;
 	height: 100vh;
@@ -26,17 +35,12 @@
 
 	#go-to-move {
 		position: fixed;
-		bottom: 80px;
 		background-color: black;
 		padding: 10px;
 		border-radius: 20px;
-
 		display: flex;
-
 		justify-content: start;
 		align-items: center;
-
-		width: 100vw;
 		button {
 			width: 40px;
 		}
