@@ -198,7 +198,7 @@ export default function ZeroKaanta() {
 					style={{
 						flexDirection: isMobile ? "row" : "column",
 						top: isMobile ? "default" : 0,
-						bottom: isMobile ? "10vh" : "default",
+						bottom: isMobile ? 50 : "default",
 						width: isMobile ? "100vw" : "default",
 						right: isMobile ? "default" : 0,
 					}}
