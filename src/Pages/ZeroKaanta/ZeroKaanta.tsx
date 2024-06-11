@@ -135,11 +135,13 @@ export default function ZeroKaanta() {
 		>
 			<ScoreBoard playerStruct={playerStruct} />
 
-			<div
-				style={{
-					marginTop: isMobile ? 80 : 0,
-				}}
-			>
+			<DisplayText
+				drawn={drawn}
+				gameNumber={gameNumber}
+				winnerIsThere={winnerIsThere}
+				turnOf={turnOf()}
+			/>
+			<div>
 				<div>
 					<CustomButton number={0} />
 					<CustomButton number={1} />
@@ -156,12 +158,6 @@ export default function ZeroKaanta() {
 					<CustomButton number={8} />
 				</div>
 			</div>
-			<DisplayText
-				drawn={drawn}
-				gameNumber={gameNumber}
-				winnerIsThere={winnerIsThere}
-				turnOf={turnOf()}
-			/>
 			{(drawn || winnerIsThere) && (
 				<button
 					onClick={() => {

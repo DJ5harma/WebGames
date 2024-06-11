@@ -13,14 +13,15 @@ export default function ScoreBoard({
 		<div
 			style={{
 				backgroundColor: "black",
-				fontSize: isMobile ? 18 : 25,
+				fontSize: isMobile ? 16 : 25,
 				position: "fixed",
 				top: 70,
 				left: 0,
 				padding: isMobile ? 15 : 30,
 				borderRadius: 10,
 				display: "flex",
-				flexDirection: "column",
+				flexDirection: isMobile ? "row" : "column",
+				alignItems: "center",
 				gap: 8,
 			}}
 		>
