@@ -17,9 +17,13 @@ export default function DisplayText({
 				borderRadius: 20,
 				userSelect: "none",
 				textAlign: "center",
+				display: "flex",
+				flexDirection: "row",
 			}}
 		>
-			<p style={{ color: "rgb(140, 255, 140)" }}>Game {gameNumber}</p>
+			<pre style={{ color: "rgb(140, 255, 140)" }}>
+				Game {gameNumber} |{" "}
+			</pre>
 			<p>
 				{(() => {
 					if (winnerIsThere)
