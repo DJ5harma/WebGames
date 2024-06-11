@@ -15,7 +15,7 @@ export default function ScoreBoard({
 				backgroundColor: "black",
 				fontSize: isMobile ? 18 : 25,
 				position: "fixed",
-				top: 70,
+				top: isMobile ? 0 : 70,
 				left: 0,
 				padding: isMobile ? 15 : 30,
 				borderRadius: 10,
