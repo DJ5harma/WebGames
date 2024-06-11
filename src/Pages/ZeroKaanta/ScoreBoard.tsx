@@ -21,17 +21,21 @@ export default function ScoreBoard({
 				borderRadius: 10,
 				display: "flex",
 				flexDirection: isMobile ? "row" : "column",
-				alignItems: "center",
 				gap: 8,
+				width: isMobile ? "100vw" : "fit-content",
+				justifyContent: "center",
+				alignItems: "center",
 			}}
 		>
-			<h2>Score</h2>
+			<p style={{ fontSize: isMobile ? "default" : 30 }}>Scores: </p>
 			<p style={{ color: "rgb(150, 150, 255)" }}>
-				Player 1 (X): {playerStruct.X}
+				P1 (X): {playerStruct.X}
 			</p>
+			{isMobile && "|"}
 			<p style={{ color: "rgb(255, 150, 150)" }}>
-				Player 2 (O): {playerStruct.O}
+				P2 (O): {playerStruct.O}
 			</p>
+			{isMobile && "|"}
 			<p style={{ color: "rgb(255, 150, 255 )" }}>
 				DRAWS: {playerStruct.DRAWS}
 			</p>
