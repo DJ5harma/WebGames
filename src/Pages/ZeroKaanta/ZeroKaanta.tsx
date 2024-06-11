@@ -191,7 +191,7 @@ export default function ZeroKaanta() {
 					Reset everything
 				</button>
 			</div>
-			{stateStore.length > 0 && (
+			{stateStore.length > 0 && stateStore.length < 9 && (
 				<div
 					id="go-to-move"
 					style={{
