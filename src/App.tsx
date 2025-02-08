@@ -1,11 +1,10 @@
-import { Link, Route, Routes, useLocation } from "react-router-dom";
+import { Link, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import PebblePopper from "./Pages/PebblePopper/PebblePopper";
 import PebblePopperScoreBoard from "./Pages/PebblePopper/PebblePopperScoreboard";
 import Home from "./Pages/Home/Home";
 import { useState } from "react";
 import SaveTheShipScoreBoard from "./Pages/SaveTheShip/SaveTheShipScoreBoard";
 import SaveTheShip from "./Pages/SaveTheShip/SaveTheShip";
-import NotFound from "./Pages/NotFound/NotFound";
 import About from "./Pages/About/About";
 import ZeroKaanta from "./Pages/ZeroKaanta/ZeroKaanta";
 
@@ -29,7 +28,7 @@ function App() {
 				/>
 				<Route path="/zero-kaanta" element={<ZeroKaanta />} />
 				<Route path="/about" element={<About />} />
-				<Route path="*" element={<NotFound />} />
+				<Route path="*" element={<Navigate to="/" replace />} />
 			</Routes>
 
 			{!verifyGoingToHome && location.pathname !== "/" && (
