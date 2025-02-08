@@ -27,7 +27,7 @@ const ship = forwardRef<
 			if (shipTopPosition < 10) {
 				setShipDirection("down");
 				// clickAudio.play();
-			} else if (shipTopPosition > window.innerHeight - 35) {
+			} else if (shipTopPosition >= window.innerHeight - 40) {
 				setShipDirection("up");
 				// clickAudio.play();
 			}
@@ -56,7 +56,6 @@ const ship = forwardRef<
 					viewBox="0 0 24 24"
 					strokeWidth={1.5}
 					stroke="currentColor"
-					className="w-6 h-6"
 					transform={`rotate(${shipDirection === "up" ? "0" : "90"})`}
 				>
 					<path
