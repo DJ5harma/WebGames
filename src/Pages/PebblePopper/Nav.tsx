@@ -1,21 +1,27 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { isMobile } from "react-device-detect";
 import { useNavigate } from "react-router-dom";
 
 const Nav = ({
 	popCount,
 	clickCount,
+	timeRemaining,
+	setTimeRemaining,
 }: {
 	popCount: number;
 	clickCount: number;
+	timeRemaining: number;
+	setTimeRemaining: Dispatch<SetStateAction<number>>;
 }) => {
-	const [timeRemaining, setTimeRemaining] = useState(60);
 	const navigate = useNavigate();
 	useEffect(() => {
-		setInterval(() => {
-			setTimeRemaining(timeRemaining - 1);
+		const intval = setInterval(() => {
+			setTimeRemaining((p) => p - 1);
 		}, 1000);
-	}, [timeRemaining]);
+		return () => {
+			window.clearInterval(intval);
+		};
+	}, []);
 
 	if (timeRemaining <= 0) {
 		navigate("/pebble-popper-scoreboard", {
@@ -24,9 +30,7 @@ const Nav = ({
 					clickCount,
 					popCount,
 					misses: clickCount - popCount,
-					accuracy: `${((popCount / clickCount) * 100).toFixed(
-						2
-					)} % `,
+					accuracy: `${((popCount / clickCount) * 100).toFixed(2)} % `,
 				},
 			},
 		});

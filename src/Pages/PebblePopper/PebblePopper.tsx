@@ -12,7 +12,7 @@ function PebblePopper() {
 	useEffect(() => {
 		document.title = "Pebble Popper";
 	}, []);
-
+	const [timeRemaining, setTimeRemaining] = useState(60);
 	const [popCount, setPopCount] = useState(0);
 	const [clickCount, setClickCount] = useState(0);
 	let ctr = 1;
@@ -24,12 +24,16 @@ function PebblePopper() {
 
 	useEffect(() => {
 		let intervalTime = 2200;
-		setInterval(() => {
+		const intval = setInterval(() => {
 			ctr++;
 			randItems[ctr] = <RandObject />;
 			setRandItems({ ...randItems });
 			intervalTime -= 100;
 		}, intervalTime);
+
+		() => {
+			window.clearInterval(intval);
+		};
 	}, []);
 
 	const clickAudio = new Audio(bloopAudio);
@@ -46,7 +50,12 @@ function PebblePopper() {
 				setClickCount(clickCount + 1);
 			}}
 		>
-			<Nav clickCount={clickCount} popCount={popCount} />
+			<Nav
+				timeRemaining={timeRemaining}
+				setTimeRemaining={setTimeRemaining}
+				clickCount={clickCount}
+				popCount={popCount}
+			/>
 			<div>
 				{Object.entries(randItems).map(([key, value]) => {
 					return (
